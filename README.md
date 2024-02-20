@@ -19,3 +19,5 @@ This section will tell about a good alternative that, if the businessman followe
 Detailed Analysis on failed businesses and mistakes they made, so that new entrepreneurs does not repeat the same mistakes.
 
 # Deployed link of Project :
+
+    Link : https://failed-business.onrender.com
