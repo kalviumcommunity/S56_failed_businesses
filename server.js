@@ -10,7 +10,14 @@ app.get('/', (req, res) => {
         console.log(err)
     }
 })
-
+app.get('/ping',(req,res)=>{
+    try{
+        res.send("Pong")
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
