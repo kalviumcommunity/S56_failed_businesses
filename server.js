@@ -1,10 +1,13 @@
 const express = require('express')
+const { connected, isConnected } = require('./db');
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
     try{
-        res.send('Hello World!')
+        res.json({
+            database : isConnected() ? 'connected' : 'disconnected'}
+        )
     }
     catch(err){
         console.log(err)
@@ -18,6 +21,11 @@ app.get('/ping',(req,res)=>{
         console.log(err)
     }
 })
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+if (require.main === module) {
+    connected()
+    app.listen(port, async () => {
+    //   await connected();
+  
+      console.log(`🚀 server running on PORT: ${port}`);
+    });
+  }
