@@ -1,7 +1,9 @@
 const express = require('express')
 const { connected, isConnected } = require('./db');
+const router = require('./routes');
 const app = express()
 const port = 3000
+app.use(router)
 
 app.get('/', (req, res) => {
     try{
