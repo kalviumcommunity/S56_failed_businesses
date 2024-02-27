@@ -1,0 +1,13 @@
+
+nav{
+    background-color: #e0876a;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav h1{
+        margin: 20px;
+}
+.searchbar{
+    display: flex;
+}
