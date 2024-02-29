@@ -20,4 +20,5 @@ Detailed Analysis on failed businesses and mistakes they made, so that new entre
 
 # Deployed link of Project :
 
-    Link : https://failed-business.onrender.com
+    Backend : https://failed-business.onrender.com
+    Frontend : https://failed-business.vercel.app/
