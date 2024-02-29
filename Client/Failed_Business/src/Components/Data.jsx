@@ -1,16 +1,22 @@
-import data from "../assets/data.json";
 import React from 'react';
-
-let dataa = data.failedBusinesses;
+import data from '../assets/data.json';
 
 function Data() {
+  const failedBusinesses = data.failedBusinesses || [];
+
   return (
     <div>
-      {dataa.map(element => (
+      {failedBusinesses.map(element => (
         <div key={element.id}>
-          <h1>{element.id}</h1>
-          <h1>{element.name}</h1>
-          <h1>{element.owner}</h1>
+          <div>
+            <strong>ID:</strong> {element.id}
+          </div>
+          <div>
+            <strong>Name:</strong> {element.name}
+          </div>
+          <div>
+            <strong>Owner:</strong> {element.owner}
+          </div>
         </div>
       ))}
     </div>
