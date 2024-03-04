@@ -2,12 +2,12 @@ import React from 'react';
 import data from '../assets/data.json';
 
 function Data() {
-  const failedBusinesses = data.failedBusinesses || [];
+  const failedBusinesses = data.failedBusinesses;
 
   return (
     <div>
       {failedBusinesses.map(element => (
-        <div key={element.id}>
+        <div key={element.id} style={{border:"2px solid black",margin:"5px"}}>
           <div>
             <strong>ID:</strong> {element.id}
           </div>
