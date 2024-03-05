@@ -23,8 +23,8 @@ const UserDataComponent = () => {
   return (
     <div>
     {error && <p>{error}</p>}
-    {userData.map((user) => (
-      <div key={user.id} style={{border:"2px solid black",margin:"5px"}}>
+    {userData.map((user,i) => (
+      <div key={i} style={{border:"2px solid black",margin:"5px"}}>
         <p>Name: {user.name}</p>
         <p>Owner: {user.owner}</p>
       </div>

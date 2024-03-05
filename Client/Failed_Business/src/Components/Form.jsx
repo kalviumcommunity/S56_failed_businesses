@@ -21,10 +21,7 @@ function Form() {
   const handleSubmit = () => {
     axios
       .post('https://failed-business.onrender.com/updateuser', {
-        id:id,
-        name: name,
-      owner: owner,
-      })
+        id,name,owner})
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
@@ -38,7 +35,7 @@ function Form() {
   return (
     <div>
         <input
-          type="text"
+          type="number"
           value={id}
           onChange={handleId}
           placeholder={'Enter Id'}
