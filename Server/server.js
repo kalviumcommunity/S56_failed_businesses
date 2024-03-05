@@ -29,6 +29,11 @@ app.get('/ping',(req,res)=>{
         console.log(err)
     }
 })
+app.post("/updateuser",(req,res)=>{
+    business.create(req.body).then((el)=>{
+        res.json({el})
+    })
+})
 if (require.main === module) {
     connected()
     app.listen(port, async () => {
