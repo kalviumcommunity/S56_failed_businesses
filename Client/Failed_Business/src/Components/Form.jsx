@@ -17,8 +17,8 @@ function Form() {
   const handleSubmit = () => {
     axios
       .post('https://failed-business.onrender.com/updateuser', {
-        name,
-        owner,
+        name: name,
+      owner: owner,
       })
       .then((result) => console.log(result))
       .catch((err) => console.log(err));

@@ -29,11 +29,17 @@ app.get('/ping',(req,res)=>{
         console.log(err)
     }
 })
-app.post("/updateuser",(req,res)=>{
-    business.create(req.body).then((el)=>{
-        res.json({el})
-    })
-})
+app.post("/updateuser", async (req, res) => {
+    const { name, owner } = req.body;
+  
+    try {
+      const updatedUser = await business.updateOne({ name: name }, { $set: { owner: owner } });
+      res.json({ message: 'User updated successfully', user: updatedUser });
+    } catch (error) {
+      console.error('Error updating user:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 if (require.main === module) {
     connected()
     app.listen(port, async () => {
