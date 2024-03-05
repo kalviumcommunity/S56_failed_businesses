@@ -25,7 +25,6 @@ const UserDataComponent = () => {
     {error && <p>{error}</p>}
     {userData.map((user) => (
       <div key={user.id} style={{border:"2px solid black",margin:"5px"}}>
-        <p>ID: {user.id}</p>
         <p>Name: {user.name}</p>
         <p>Owner: {user.owner}</p>
       </div>
