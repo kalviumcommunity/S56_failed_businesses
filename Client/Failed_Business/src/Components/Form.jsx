@@ -4,6 +4,7 @@ import axios from 'axios';
 function Form() {
   const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
+  const [id, setId] = useState('');
   const [data,setData] = useState([])
 
   const handleName = (event) => {
@@ -13,10 +14,14 @@ function Form() {
   const handleOwner = (event) => {
     setOwner(event.target.value);
   };
+  const handleId = (event) => {
+    setId(event.target.value);
+  };
 
   const handleSubmit = () => {
     axios
       .post('https://failed-business.onrender.com/updateuser', {
+        id:id,
         name: name,
       owner: owner,
       })
@@ -32,6 +37,12 @@ function Form() {
 
   return (
     <div>
+        <input
+          type="text"
+          value={id}
+          onChange={handleId}
+          placeholder={'Enter Id'}
+        />
       <input
         type="text"
         value={name}

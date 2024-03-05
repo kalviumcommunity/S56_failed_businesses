@@ -30,15 +30,7 @@ app.get('/ping',(req,res)=>{
     }
 })
 app.post("/updateuser", async (req, res) => {
-    const { name, owner } = req.body;
-  
-    try {
-      const updatedUser = await business.updateOne({ name: name }, { $set: { owner: owner } });
-      res.json({ message: 'User updated successfully', user: updatedUser });
-    } catch (error) {
-      console.error('Error updating user:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
+    business.create(req,res).then((dat)=>res.json(dat)).catch((err)=>res.json(err))
   });
 if (require.main === module) {
     connected()
