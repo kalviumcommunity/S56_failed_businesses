@@ -19,10 +19,9 @@ function Form() {
   };
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("id:", id);
-  console.log("name:", name);
-  console.log("owner:", owner);
+   
     var myData = {id,name,owner}
+   console.log(myData)
     axios
       .post('https://failed-business.onrender.com/updateuser',myData)
       .then((result) => console.log(result))

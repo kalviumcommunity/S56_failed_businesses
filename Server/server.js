@@ -30,7 +30,18 @@ app.get('/ping',(req,res)=>{
     }
 })
 app.post("/updateuser", async (req, res) => {
-    business.create(req,res).then((dat)=>res.json(dat)).catch((err)=>res.json(err))
+    let payload = req.body;
+    try {
+        let user = new business(payload)
+        await user.save()
+        res.send({
+            message:"successful",
+            data: user
+        })
+        
+    } catch (error) {
+        res.send("error",error)
+    }
   });
 if (require.main === module) {
     connected()
