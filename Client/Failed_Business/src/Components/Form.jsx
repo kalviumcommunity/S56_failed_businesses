@@ -17,20 +17,15 @@ function Form() {
   const handleId = (event) => {
     setId(event.target.value);
   };
-  var myData = {id,name,owner}
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    var myData = {id,name,owner}
     axios
-      .post('https://failed-business.onrender.com/updateuser', {
-      myData})
+      .post('https://failed-business.onrender.com/updateuser',myData)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    axios.get('https://failed-business.onrender.com/getuser').then((res) => {
-      setData(res.data);
-    });
-  }, []);
 
   return (
     <div>
