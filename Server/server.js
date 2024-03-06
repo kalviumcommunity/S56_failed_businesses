@@ -29,23 +29,9 @@ app.get('/ping',(req,res)=>{
         console.log(err)
     }
 })
-app.post('/updateuser', async (req, res) => {
-    try {
-      const { id, name, owner } = req.body;
-      const newBusiness = new businesses({
-        id,
-        name,
-        owner,
-      });
-      await newBusiness.save();
-  
-      res.status(201).json({ message: 'Data added successfully' });
-    } catch (error) {
-      console.error('Error adding data:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
+app.post("/updateuser", async (req, res) => {
+    business.create(req,res).then((dat)=>res.json(dat)).catch((err)=>res.json(err))
   });
-  
 if (require.main === module) {
     connected()
     app.listen(port, async () => {
