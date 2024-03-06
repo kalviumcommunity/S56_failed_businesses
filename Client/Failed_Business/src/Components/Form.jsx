@@ -17,11 +17,11 @@ function Form() {
   const handleId = (event) => {
     setId(event.target.value);
   };
-
+  var myData = {id,name,owner}
   const handleSubmit = () => {
     axios
       .post('https://failed-business.onrender.com/updateuser', {
-        id,name,owner})
+      myData})
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
