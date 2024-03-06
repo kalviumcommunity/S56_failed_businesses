@@ -3,10 +3,15 @@ const { connected, isConnected } = require('./db');
 const router = require('./routes');
 const business = require("./model.js")
 const cors = require("cors")
-const app = express()
 const port = 3000
-app.use(router)
+
+
+const app = express()
 app.use(cors())
+app.use(express.json())
+app.use(router)
+
+
 app.get('/', (req, res) => {
     try{
         res.json({
@@ -31,6 +36,7 @@ app.get('/ping',(req,res)=>{
 })
 app.post("/updateuser", async (req, res) => {
     let payload = req.body;
+    console.log(payload)
     try {
         let user = new business(payload)
         await user.save()

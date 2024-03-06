@@ -7,6 +7,6 @@ const businessSchema = new mongoose.Schema({
   owner: String,
 },versionKey=false);
 
-const businesses = mongoose.model('dataones', businessSchema);
+const businesses = mongoose.model('dataone', businessSchema);
 
 module.exports = businesses;
