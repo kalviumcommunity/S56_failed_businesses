@@ -26,7 +26,7 @@ app.get("/getuser",async (req,res)=>{
     const data = await business.find({});
     res.json(data);
 })
-router.get("/getuser/:id",async(req,res)=>{
+router.put("/getuser/:id",async(req,res)=>{
     let result = await business.find({})
     res.json(result) 
 })

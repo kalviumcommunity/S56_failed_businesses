@@ -12,7 +12,6 @@ const UserDataComponent = () => {
       try {
         const response = await axios.get('https://failed-business.onrender.com/getuser');
         setUserData(response.data);
-        console.log(response.data)
       } catch (error) {
         setError('Error fetching data');
         console.error('Error fetching data:', error);
@@ -21,7 +20,7 @@ const UserDataComponent = () => {
 
     fetchData();
   }, []);
-  
+
   const handleEdit = () =>{
     console.log(userData)
   }
