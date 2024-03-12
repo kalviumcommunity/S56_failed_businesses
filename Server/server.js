@@ -2,8 +2,10 @@ const express = require('express')
 const { connected, isConnected } = require('./db');
 const router = require('./routes');
 const business = require("./model.js")
-const cors = require("cors")
+const cors = require("cors");
+const { required } = require('joi');
 const port = 3200
+const validateData = require("./Validation.js")
 
 
 const app = express()
@@ -69,6 +71,10 @@ app.get('/ping',(req,res)=>{
 app.post("/updateuser", async (req, res) => {
     let payload = req.body;
     console.log(payload)
+    const {error} = validateData(payload)
+    if(error){
+        return res.status(400).json({error:"Invalid Data",message:"Invalid Data",details:error.details.map((error)=>error.message),status:"failed"})
+    }
     try {
         let user = new business(payload)
         await user.save()
