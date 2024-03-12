@@ -74,17 +74,19 @@ app.post("/updateuser", async (req, res) => {
     const {error} = validateData(payload)
     if(error){
         return res.status(400).json({error:"Invalid Data",message:"Invalid Data",details:error.details.map((error)=>error.message),status:"failed"})
-    }
-    try {
-        let user = new business(payload)
-        await user.save()
-        res.send({
-            message:"successful",
-            data: user
-        })
-        
-    } catch (error) {
-        res.send("error",error)
+    }else{
+
+        try {
+            let user = new business(payload)
+            await user.save()
+            res.send({
+                message:"successful",
+                data: user
+            })
+            
+        } catch (error) {
+            res.send("error",error)
+        }
     }
   });
 if (require.main === module) {
