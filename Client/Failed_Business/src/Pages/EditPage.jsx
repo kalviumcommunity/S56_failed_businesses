@@ -47,7 +47,7 @@ function EditPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Assuming your API supports the PUT request for updating data
+
       await axios.put(`https://failed-business.onrender.com/getuser/${id}`, {
         id: userId,
         owner: userName,
