@@ -6,6 +6,7 @@ import EditPage from '../Pages/EditPage';
 const UserDataComponent = () => {
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState([]);
+  const [_id,set_Id] = useState("")
   const {id} = useParams()
   
   useEffect(() => {
@@ -25,6 +26,9 @@ const UserDataComponent = () => {
   const handleEdit = () =>{
     console.log(userData)
   }
+  const handleDelete = (id) => {
+    
+  }
   return (
     <div>
     {error && <p>{error}</p>}
@@ -33,7 +37,7 @@ const UserDataComponent = () => {
         <p>Name: {user.name}</p>
         <p>Owner: {user.owner}</p>
        <Link to={`/edit/${user._id}`}> <button onClick={handleEdit}>EDIT</button></Link>
-        <button>DELETE</button>
+        <button onClick={()=>handleDelete}>DELETE</button>
       </div>
     ))}
   </div>

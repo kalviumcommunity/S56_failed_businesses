@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function EditPage() {
   const  id  = useParams();
-  console.log(id.id)
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
   const [businessName, setBusinessName] = useState('');
@@ -14,7 +13,6 @@ function EditPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://failed-business.onrender.com/get/${id.id}`);
-        console.log('Full Response:', response.data);
         setUserId(response.data._id || '');
         setUserName(response.data.owner || '');
         setBusinessName(response.data.name || '');
@@ -33,10 +31,10 @@ function EditPage() {
         setUserId(value);
         break;
       case 'name':
-        setUserName(value);
+        setBusinessName(value);
         break;
       case 'owner':
-        setBusinessName(value);
+        setUserName(value);
         break;
       default:
         break;
@@ -62,8 +60,8 @@ function EditPage() {
       <Navbar />
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" value={userId} onChange={handleInputChange} />
-        <input type="text" name="name" placeholder="name" value={userName} onChange={handleInputChange} />
-        <input type="text" name="owner" placeholder="owner" value={businessName} onChange={handleInputChange} />
+        <input type="text" name="name" placeholder="name" value={businessName} onChange={handleInputChange} />
+        <input type="text" name="owner" placeholder="owner" value={userName} onChange={handleInputChange} />
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -52,7 +52,16 @@ app.put('/updateuser/:id', async (req, res) => {
     }
 });
 
-  
+app.delete("/delete/:id",async(req,res)=>{
+    const userId = req.params.id;
+    business.findByIdAndDelete({
+        userId
+    }).then((data)=>{
+        res.json(data)
+    }).catch((err)=>{
+        res.json(err)
+    })
+})
 app.get('/ping',(req,res)=>{
     try{
         res.send("Pong")
