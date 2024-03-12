@@ -14,8 +14,6 @@ function EditPage() {
       try {
         const response = await axios.get(`https://failed-business.onrender.com/getuser/${id}`);
         console.log('Full Response:', response.data);
-
-        // Assuming the response structure is { id, owner, name }
         setUserId(response.data.id || '');
         setUserName(response.data.owner || '');
         setBusinessName(response.data.name || '');
@@ -47,8 +45,7 @@ function EditPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-
-      await axios.put(`https://failed-business.onrender.com/getuser/${id}`, {
+      await axios.put(`https://failed-business.onrender.com/updateuser/${id}`, {
         id: userId,
         owner: userName,
         name: businessName,

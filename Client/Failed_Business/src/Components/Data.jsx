@@ -31,7 +31,7 @@ const UserDataComponent = () => {
       <div key={i} style={{border:"2px solid black",margin:"5px"}}>
         <p>Name: {user.name}</p>
         <p>Owner: {user.owner}</p>
-       <Link to={"/edit:id"}> <button onClick={handleEdit}>EDIT</button></Link>
+       <Link to={"/edit/:id"}> <button onClick={handleEdit}>EDIT</button></Link>
         <button>DELETE</button>
       </div>
     ))}
