@@ -35,6 +35,7 @@ const UserDataComponent = () => {
       console.log(userId,'user')
       let data = await axios.delete(`https://failed-business.onrender.com/delete/${userId}`)
       console.log(data)
+      window.location.reload()
       // setUserData(prevUserData => prevUserData.filter(user => user._id !== userId));
       // setSelectedId(null);
     } catch (error) {
