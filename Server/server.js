@@ -3,7 +3,7 @@ const { connected, isConnected } = require('./db');
 const router = require('./routes');
 const business = require("./model.js")
 const cors = require("cors")
-const port = 3000
+const port = 3200
 
 
 const app = express()
@@ -25,6 +25,38 @@ app.get('/', (req, res) => {
 app.get("/getuser",async (req,res)=>{
     const data = await business.find({});
     res.json(data);
+})
+
+app.get("/get/:_id",async (req,res)=>{
+     let id = req.params._id;
+    console.log(id)
+    const data = await business.find({_id:req.params._id});
+    res.json(data);
+})
+app.put('/updateuser/:id', async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const updatedUser = await business.findByIdAndUpdate(userId, {
+            name: req.body.name,
+            owner: req.body.owner,
+        }, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(updatedUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.delete("/delete/:_id",async(req,res)=>{
+    const id = req.params._id;
+    console.log(id)
+    let del = await business.findByIdAndDelete({_id:id})
+    res.send(del)
 })
 app.get('/ping',(req,res)=>{
     try{
