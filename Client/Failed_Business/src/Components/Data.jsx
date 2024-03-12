@@ -6,7 +6,8 @@ import EditPage from '../Pages/EditPage';
 const UserDataComponent = () => {
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState([]);
-
+  const {id} = useParams()
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +32,7 @@ const UserDataComponent = () => {
       <div key={i} style={{border:"2px solid black",margin:"5px"}}>
         <p>Name: {user.name}</p>
         <p>Owner: {user.owner}</p>
-       <Link to={"/edit/:id"}> <button onClick={handleEdit}>EDIT</button></Link>
+       <Link to={`/edit/${user._id}`}> <button onClick={handleEdit}>EDIT</button></Link>
         <button>DELETE</button>
       </div>
     ))}
