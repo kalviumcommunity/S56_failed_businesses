@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function EditPage() {
-  const { id } = useParams();
-  console.log(id)
+  const  id  = useParams();
+  console.log(id.id)
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
   const [businessName, setBusinessName] = useState('');
@@ -13,7 +13,7 @@ function EditPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://failed-business.onrender.com/get/${id}`);
+        const response = await axios.get(`https://failed-business.onrender.com/get/${id.id}`);
         console.log('Full Response:', response.data);
         setUserId(response.data._id || '');
         setUserName(response.data.owner || '');
