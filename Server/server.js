@@ -3,9 +3,9 @@ const { connected, isConnected } = require('./db');
 const router = require('./routes');
 const business = require("./model.js")
 const cors = require("cors");
-const { required } = require('joi');
+const Joi = require('joi');
 const port = 3200
-const validateData = require("./Validation.js")
+const {validateData} = require("./Validation.js")
 
 
 const app = express()

@@ -5,7 +5,7 @@ const validator = (schema) => (payload) =>{
 }
 
 const dataSchema = JOI.object({
-    id:JOI.number(),
+    id:JOI.number().required(),
     name:JOI.string().required(),
     owner:JOI.string().required()
 })
