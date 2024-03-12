@@ -1,23 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import Homepage from './Pages/Homepage'
-import {BrowserRouter,Route,Routes} from "react-router-dom"
-import UpdatePage from './Pages/UpdatePage'
-import EditPage from './Pages/EditPage'
+import { useState } from 'react';
+import './App.css';
+import Homepage from './Pages/Homepage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UpdatePage from './Pages/UpdatePage';
+import EditPage from './Pages/EditPage';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-        <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/form' element = {<UpdatePage/>}/>
-          <Route path = "/edit" element = {<EditPage/>}/>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/form" element={<UpdatePage />} />
+          <Route path="/edit/:id" element={<EditPage />} />
         </Routes>
-        </BrowserRouter>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
