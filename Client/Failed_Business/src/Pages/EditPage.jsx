@@ -10,20 +10,21 @@ function EditPage() {
     const [userName,setUserName] = useState("")
     const [businessName,setBusinessName] = useState("")
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get('https://failed-business.onrender.com/getuser/:id');
-            setUserId(response.data.id);
-            setUserName(response.data.owner)
-            setBusinessName(response.data.name)
-            console.log(response.data.id)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`https://failed-business.onrender.com/getuser/${id}`);
+          setUserId(response.data.id || '');  
+          setUserName(response.data.owner || '');  
+          setBusinessName(response.data.name || '');  
+          console.log(response.data.id);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
     
-        fetchData();
-      }, []);
+      fetchData();
+    }, [id]);
+    
 
       console.log(userId)
       const handleSubmit=(event)=>{
