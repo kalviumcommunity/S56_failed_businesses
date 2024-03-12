@@ -52,15 +52,11 @@ app.put('/updateuser/:id', async (req, res) => {
     }
 });
 
-app.delete("/delete/:id",async(req,res)=>{
-    const userId = req.params.id;
-    business.findByIdAndDelete({
-        userId
-    }).then((data)=>{
-        res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+app.delete("/delete/:_id",async(req,res)=>{
+    const id = req.params._id;
+    console.log(id)
+    let del = await business.findByIdAndDelete({_id:id})
+    res.send(del)
 })
 app.get('/ping',(req,res)=>{
     try{
