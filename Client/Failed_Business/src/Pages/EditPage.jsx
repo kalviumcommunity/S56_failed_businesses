@@ -46,7 +46,7 @@ function EditPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`https://failed-business.onrender.com/updateuser/${id}`, {
+      await axios.put(`https://failed-business.onrender.com/updateuser/${id.id}`, {
         id: userId,
         owner: userName,
         name: businessName,
