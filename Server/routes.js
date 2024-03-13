@@ -1,5 +1,6 @@
 const express = require("express");
 const { get } = require("mongoose");
+const JWT = require("jsonwebtoken")
 const router = express.Router();
 const business = require("./model.js")
 router.get("/get", (req, res, next) => {
@@ -37,4 +38,9 @@ router.delete("/delete", (req, res, next) => {
         next(error);
     }
 });
+router.post("/auth",(req,res)=>{
+    const {username} = req.body
+    const token = JWT.sign({username:username},"Secret_key")
+    res.send(token)
+})
 module.exports = router;
