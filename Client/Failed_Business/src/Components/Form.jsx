@@ -7,6 +7,7 @@ function Form() {
   const [id, setId] = useState('');
   const [data,setData] = useState([])
 
+  const created_by = localStorage.getItem("User")
   const handleName = (event) => {
     setName(event.target.value);
   };
@@ -20,10 +21,10 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault()
    
-    var myData = {id,name,owner}
-   console.log(myData)
+    var myData = {id,name,owner,created_by}
+    console.log(myData)
     axios
-      .post('https://failed-business.onrender.com/updateuser',myData)
+      .post('https://failed-business.onrender.com/postuser',myData)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };

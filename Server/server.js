@@ -1,7 +1,8 @@
 const express = require('express')
 const { connected, isConnected } = require('./db');
 const router = require('./routes');
-const business = require("./model.js")
+const {businesses,users} = require("./model.js")
+
 const cors = require("cors");
 const Joi = require('joi');
 const port = 3200
@@ -25,20 +26,20 @@ app.get('/', (req, res) => {
     }
 })
 app.get("/getuser",async (req,res)=>{
-    const data = await business.find({});
+    const data = await businesses.find({});
     res.json(data);
 })
 
 app.get("/get/:_id",async (req,res)=>{
      let id = req.params._id;
     console.log(id)
-    const data = await business.find({_id:req.params._id});
+    const data = await businesses.find({_id:req.params._id});
     res.json(data);
 })
 app.put('/updateuser/:id', async (req, res) => {
     const userId = req.params.id;
     try {
-        const updatedUser = await business.findByIdAndUpdate(userId, {
+        const updatedUser = await businesses.findByIdAndUpdate(userId, {
             name: req.body.name,
             owner: req.body.owner,
         }, { new: true });
@@ -53,11 +54,14 @@ app.put('/updateuser/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-
+app.get("/getuserdata",async(req,res)=>{
+    const data = await users.find({});
+    res.json(data);
+})
 app.delete("/delete/:_id",async(req,res)=>{
     const id = req.params._id;
     console.log(id)
-    let del = await business.findByIdAndDelete({_id:id})
+    let del = await businesses.findByIdAndDelete({_id:id})
     res.send(del)
 })
 app.get('/ping',(req,res)=>{
@@ -68,24 +72,25 @@ app.get('/ping',(req,res)=>{
         console.log(err)
     }
 })
-app.post("/updateuser", async (req, res) => {
+
+app.post("/postuser", async (req, res) => {
     let payload = req.body;
     console.log(payload)
     const {error} = validateData(payload)
     if(error){
-        return res.status(400).json({error:"Invalid Data",message:"Invalid Data",details:error.details.map((error)=>error.message),status:"failed"})
+        return res.status(400).send({error:"Invalid Data",message:"Invalid Data",details:error.details.map((error)=>error.message),status:"failed"})
     }else{
 
         try {
-            let user = new business(payload)
+            let user = new businesses(payload)
             await user.save()
-            res.send({
-                message:"successful",
-                data: user
-            })
+            // res.send({
+            //     message:"successful",
+            //     data: user
+            // })
             
         } catch (error) {
-            res.send("error",error)
+            // res.status(500).send("error",error)
         }
     }
   });
