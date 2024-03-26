@@ -2,7 +2,7 @@ const express = require("express");
 const { get } = require("mongoose");
 const JWT = require("jsonwebtoken")
 const router = express.Router();
-const business = require("./model.js")
+const {businesses,users} = require("./model.js")
 router.get("/get", (req, res, next) => {
     try {
         res.send("Get request on home page");
@@ -12,7 +12,7 @@ router.get("/get", (req, res, next) => {
 });
 
 router.get("/getuser/:id",async(req,res)=>{
-    let result = await business.find({})
+    let result = await businesses.find({})
     res.json(result) 
 })
 router.post("/post", (req, res, next) => {
@@ -41,6 +41,7 @@ router.delete("/delete", (req, res, next) => {
 router.post("/auth",(req,res)=>{
     const {username} = req.body
     const token = JWT.sign({username:username},"Secret_key")
+    users.create({username:username})
     res.send(token)
 })
 module.exports = router;

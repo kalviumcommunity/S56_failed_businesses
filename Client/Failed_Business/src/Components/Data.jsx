@@ -7,7 +7,8 @@ import EditPage from '../Pages/EditPage';
 const UserDataComponent = () => {
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState("All");
+  const [mydata,setMydata] = useState([])
   // const id = useParams();
 
   useEffect(() => {
@@ -23,7 +24,10 @@ const UserDataComponent = () => {
 
     fetchData();
   }, []);
-
+  useEffect(()=>{
+    const data = axios.get('https://failed-business.onrender.com/getuserdata').then((data)=>setMydata(data.data)).catch((err)=>console.log(err))
+  },[])
+  console.log(mydata)
   const handleEdit = () => {
     console.log(userData);
   };
@@ -43,11 +47,21 @@ const UserDataComponent = () => {
       setError('Error deleting user');
     }
   };
-
+  let filteredData = selectedId === "All" ?  userData : userData.filter((el)=>{
+    if(el.created_by===selectedId){
+      return el;
+    }
+  })
   return (
     <div>
+        <select onChange={(e)=>{setSelectedId(e.target.value)}}>
+          <option value="All">All Data</option>
+          {mydata.map((el,i)=>{
+            return <option key={i}>{el.username}</option>
+          })}
+        </select>
       {error && <p>{error}</p>}
-      {userData.map((user, i) => (
+      {filteredData.map((user, i) => (
         <div key={i} style={{ border: '2px solid black', margin: '5px' }}>
           <p>Name: {user.name}</p>
           <p>Owner: {user.owner}</p>
