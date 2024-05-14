@@ -4,6 +4,7 @@ import Form from '../Components/Form'
 
 function UpdatePage() {
   return (
+    
     <div>
         <Navbar/>
         <Form/>
