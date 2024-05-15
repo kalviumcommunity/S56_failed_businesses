@@ -5,7 +5,6 @@ import UserDataComponent from '../Components/Data'
 function Homepage() {
   return (
     <div>
-        <Navbar/>
         <UserDataComponent/>
     </div>
   )
