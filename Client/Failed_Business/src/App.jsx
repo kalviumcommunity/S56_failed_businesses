@@ -43,9 +43,11 @@ function App() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://failed-business.onrender.com/login', loginFormData);
+      const response = await axios.post('https://failed-business.onrender.com/auth', loginFormData);
       if (response.status === 200) {
         console.log('Login successful');
+        const { token } = response.data;
+        document.cookie = `loginToken=${token};expires=Thu, 01 Jan 2070 00:00:00 GMT`;
       } else {
         console.error('Login failed:', response.statusText);
       }

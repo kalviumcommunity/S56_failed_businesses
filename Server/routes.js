@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const {User} = require("./model")
+require("dotenv")
+secretkey = process.env.secretkey
 
 router.post('/signup', async (req, res) => {
   try {
@@ -18,7 +20,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/auth', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -29,6 +31,8 @@ router.post('/login', async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid password' });
     }
+    const token = jwt.sign({ username: username }, secretkey)
+    res.send(token)
     res.status(200).json({ message: 'Login successful', user });
   } catch (error) {
     res.status(500).json({ error: error.message });
