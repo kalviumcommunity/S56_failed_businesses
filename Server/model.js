@@ -8,7 +8,7 @@ const businessSchema = new mongoose.Schema({
 
 
 const userSchema = new mongoose.Schema({
-  email: String,
+  username: String,
   password: String,
 }, { versionKey: false });
 
