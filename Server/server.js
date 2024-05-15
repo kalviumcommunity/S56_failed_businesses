@@ -1,7 +1,7 @@
 const express = require('express')
 const { connected, isConnected } = require('./db');
 const router = require('./routes');
-const business = require("./model.js")
+const {business,User} = require("./model.js")
 const cors = require("cors")
 const port = 3000
 

@@ -43,7 +43,7 @@ function App() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', loginFormData);
+      const response = await axios.post('https://failed-business.onrender.com/login', loginFormData);
       if (response.status === 200) {
         console.log('Login successful');
       } else {
@@ -57,7 +57,7 @@ function App() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/signup', signupFormData);
+      const response = await axios.post('https://failed-business.onrender.com/signup', signupFormData);
       if (response.status === 201) {
         console.log('Signup successful');
       } else {
