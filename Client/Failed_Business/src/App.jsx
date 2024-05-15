@@ -43,10 +43,10 @@ function App() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/auth', loginFormData);
+      const response = await axios.post('https://failed-business.onrender.com/auth', loginFormData);
       if (response.status === 200) {
         console.log('Login successful');
-        const { token } = response.data;
+        const  token  = response.data;
         document.cookie = `loginToken=${token};expires=Thu, 01 Jan 2070 00:00:00 GMT`;
       } else {
         console.error('Login failed:', response.statusText);
@@ -59,7 +59,7 @@ function App() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/signup', signupFormData);
+      const response = await axios.post('https://failed-business.onrender.com/signup', signupFormData);
       if (response.status === 201) {
         console.log('Signup successful');
       } else {
