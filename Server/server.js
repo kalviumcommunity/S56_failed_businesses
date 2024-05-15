@@ -1,7 +1,7 @@
 const express = require('express')
 const { connected, isConnected } = require('./db');
 const router = require('./routes');
-const {business,User} = require("./model.js")
+const {businesses,User} = require("./model.js")
 const cors = require("cors")
 const port = 3000
 
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     }
 })
 app.get("/getuser",async (req,res)=>{
-    const data = await business.find({});
+    const data = await businesses.find({});
     res.json(data);
 })
 app.get('/ping',(req,res)=>{
@@ -38,7 +38,7 @@ app.post("/updateuser", async (req, res) => {
     let payload = req.body;
     console.log(payload)
     try {
-        let user = new business(payload)
+        let user = new businesses(payload)
         await user.save()
         res.send({
             message:"successful",
