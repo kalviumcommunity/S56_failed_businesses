@@ -1,14 +1,19 @@
-
 const mongoose = require('mongoose');
 
 const businessSchema = new mongoose.Schema({
   id: Number,
   name: String,
   owner: String,
-});
+}, { versionKey: false });
 
-businessSchema.set("versionKey",false)
 
-const businesses = mongoose.model('dataone', businessSchema);
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+}, { versionKey: false });
 
-module.exports = businesses;
+
+const businesses = mongoose.model('dataones', businessSchema);
+const User = mongoose.model('users', userSchema);
+
+module.exports = { businesses, User };

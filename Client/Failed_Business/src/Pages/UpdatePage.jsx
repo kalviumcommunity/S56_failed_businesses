@@ -6,7 +6,6 @@ function UpdatePage() {
   return (
     
     <div>
-        <Navbar/>
         <Form/>
     </div>
   )
